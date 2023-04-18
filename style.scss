@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+header {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container_header {
+    text-align: center;
+    color: #cc4848b3;
+    font-size: 20px;
+    img {
+      width: 30px;
+    }
+  }
+}
+
+.barre_recherche {
+  margin-top: 45px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+
+  .input_recherche {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(168, 166, 166);
+    padding: 15px;
+    border-radius: 5px;
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      background-color: rgb(168, 166, 166);
+      outline: none;
+    }
+
+    img {
+      height: 25px;
+      color: white;
+      background-color: rgb(168, 166, 166);
+    }
+  }
+}
+//-------------------affiche element--------------------
+.afficheClickIng{
+  margin-top: 15px;
+  display: flex;
+
+  .containeAffiche2{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    margin-left: 15px;
+
+    .text{
+      text-align: center;
+    }
+    .fa-times{
+      cursor: pointer;
+    }
+  }
+}
+//----------partie filter---------------------------------
+.filters {
+  margin-top: 50px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  //----------avant click du chevron--------------
+  .container_info {
+    margin: 15px;
+    width: 150px;
+    height: 50px;
+    background-color: #3282f7;
+    transition: (0.5s);
+
+    .input_container {
+      height: 100%;
+
+      .containt_nameElement {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+        color: white;
+
+        .fa-chevron-down {
+          cursor: pointer;
+        }
+      }
+    }
+
+    //------------apres click du chevron---------------------------
+    .containt_element_Serach {
+      display: none;
+
+      .input_chevron {
+        padding-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        color: white;
+
+        input {
+          width: 90%;
+          height: 25px;
+          color: white;
+          background-color: #3282f7;
+          border: none;
+          outline: none;
+        }
+        .fa-chevron-up {
+          cursor: pointer;
+        }
+      }
+
+      .containt_info {
+        color: white;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 150px);
+        grid-column-gap: 60px;
+        justify-content: center;
+        height: 250px;
+        overflow: auto;
+
+        p {
+          text-align: center;
+          margin: 10px;
+          cursor: pointer;
+        }
+        p:hover {
+          color: black;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  //--------------styles des autres filter-------------
+  .container_info:nth-child(2) {
+    background-color: #68d9a4;
+
+    .containt_element_Serach:nth-child(2) {
+      .input_chevron {
+        input {
+          background-color: #68d9a4;
+        }
+      }
+    }
+  }
+  //-----------
+  .container_info:nth-child(3) {
+    background-color: #ed6454;
+
+    .containt_element_Serach:nth-child(2) {
+      .input_chevron {
+        input {
+          background-color: #ed6454;
+        }
+      }
+    }
+  }
+  //--------------quand je click sur les chevrons-------------
+
+  .container_info.container_infoAfter {
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    transition: (0.5s);
+  }
+  .input_container.input_containerAfter {
+    display: none;
+  }
+  .containt_element_Serach.containt_element_SerachAfter {
+    display: block;
+  }
+}
+
+section {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 25px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  grid-gap: 50px;
+}
+section.displayNone{
+  display: none;
+}
+
+nav {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 25px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  grid-gap: 50px;
+}
+
+  .containerAll {
+    width: 350px;
+    height: auto;
+    margin-left: 30px;
+    margin-bottom: 55px;
+
+    .imgNone {
+      height: 170px;
+      background-color: #c7bebe;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+
+    .lesInfos {
+      background-color: #e7e7e7;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+
+      .tittle_time {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .time {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: bold;
+          width: 100px;
+        }
+        .tittle {
+          width: 200px;
+        }
+      }
+
+      .ingredient_demo {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        .ingredient {
+          font-size: 13px;
+          width: 550px;
+        }
+
+        .demo {
+          font-size: 13px;
+          width: 550px;
+          height: 150px;
+          overflow: auto;
+        }
+      }
+    
+  }
+}
+//-------------------------------------------------------------
+@media only screen and (max-width: 600px) {
+  .container_info.container_infoAfter {
+    width: 100px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

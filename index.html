@@ -1,12 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://icones8.fr/icon/20405/chapeau-de-chef">
+    <title>Les petits Plats</title>
 </head>
+
 <body>
-    
+    <header>
+        <div class="container_header">
+            <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADBklEQVR4nO1YzU4UQRBuE6MgEo0nCbyASniFSZCpr7JLlmiYh/ANNHpREMQfPJAgB8UrSLy4D8DFELa7VziQmHjhUTQ125OQ7M7O7C672+B8SSeTqf6rqa++nmqlClxy2Pn5GzUiNsALA2xbou/S5FneWQAHUTSqfMVfpa5YonkD7BigmtF2LFCWMcon2Lm5W5bo1ZmNvtPAXK1Uuvstiq5Js8CEIQot8P5Mv5cyVvmAgygaNcDHeGNEX3UYTmeNkT7SV8ZYYH0gVDsJgpvydYXfmmjLAnuGaFcDG5boiSFacU68/VmpjOed93elMi6Rc2NXZC4LbMjcsoasZYiey9qyh+4dEDowRzYf57e7ocjRwsJtJwKZOWWYF4WinTlBdEdCnkwk/LfMdFQuT+4HwYg0eRYFki8pz6pLHDJPuWjg7Pzxe2bSREvJPjSwLnvL7UTCXwnvL+b7asioAQ9iqrk8zHQmplMSCaKV4zAcU57gOAzHLLDqGPKhLc0kJ1zHTz45kUCS3jI3IhOGiyq1k0tsH+jUVrqdALRUMyexcWIrz2GZYwGoMT9sMopmx9EgCpXnsADcYfqs2ei414uUDgqHzFOJqjYZtZzYQPU0CEaU5zgNghF3ruw1GU3jV7v6h/m6uiCO2FaOWOCLM04oz3EwOzvpIvK5ySiJk6oEnkEnCsv8tMnoqjoxLinPUSd67fZKresKol0D/KiXSveU5weiBXZShakOPE5kzfdflBrzo9SO+0FwVQok5/GqT86cSIFHtOY+9JrsNbPYscBmEpk8pWu/ocNwOomEBjZzF3FxGeoSSnJGA8t15hk1YNSZZ2Rt2YNzYrmTcjqGXNXURcmYG0VWq8Onz9Dub0OKKVHVnq6P4rxxpWZaH8knKcjO0yZI1s3Mh7zIcqSdvVtbHnvHKBxRFywimmjNAm86Hdtu3FAcaYeszfZr3cFMmBOmcCQFRUR6hCmolYIc1/59beq8cOkcUQOGKRxJQRGRHmEKav0v1DIXXX61u08aRrNdlgAF1JDxDzYzr74vMgnrAAAAAElFTkSuQmCC">
+            <h2>Les petits Plats</h2>
+        </div>
+    </header>
+    <div class="barre_recherche">
+        <div class="input_recherche">
+            <input type="search" placeholder="rechercher une recette" class="inputSearch">
+            <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAChklEQVR4nO2Zu24TQRSGPxeElgYbEVIYHoECCJdXQAIH+YKECA+AxEVESAl0wAsgUUEKpCiiIDFKDYGGS96AhhZSBZGQ2MFwpH+lKQxi8czYu+wnjbTy5f/3jPecOTOGgoKR5AAwDcwDa8A6sKPxBfig9y4DFUaQM0Ab6AC9vxz22WXgNCPAEWDFubku8Aq4BhwDysAeDbs+DlwHVvXZ5HsvgMPDCqIFfNWNfAPuAftTfN8Cuw9sSmMDaBCZOWc2F4DxAbQOAYuO3iyRuCvDH7ouedK9CuzGCqYlIzOsBdCfcoKpEzCxk5y4FcoEmHFyphrCYMXJiZCUnJxph1gneqowE4RnXJWwB5zyKdyWqJXYWFhpNs8ln21HRwtYmnViUGyd6aq9seuBuaKZeUl8Xsv7kg+xeYlZ2xGbG/J+7ENsTWLWO8VmUt7vfIitSyxmfiRU5P3Zh9i2xMaIz155f89LIBt5ebQ++kx22xTF5qS8rQznovw+8iE2LTHbnsbmjbzP+XpOkxbFS6uQskXpAPt8iS5rZqyRi8UDeVpL740TEt0aQht/1Ld425khX/v0fpj2M3k9D2FQ1cLU03Y0FLflYSeTB0OZNJzDBzso8M0F5/DhLIGZdYKZ8fSYlfRLJEHs6sSGWMEkOWOHbP/KhJMT7rDS2yQCdSdnNlWa06wzZZXYLacx7PYJpkEEqk41S4xX1VpMajEd06jotZvqndybXlBiN4cZDDqyWUr5t4JtD572aUZ/F0ydiJR1UPAEeK8Suq3F7RPwFniom/rTtqAxCsH4wsp7p08wF8lRMC0yyFSegqn9D8E0yWgwO0UwGSkAc2SU885jdoeMU4v5d3ZBwa8Z+Ak4rhMJLuUtjQAAAABJRU5ErkJggg==">
+        </div>
+    </div>
+
+    <div class="afficheClickIng">
+
+    </div>
+
+
+
+    <!-- //--------------partie filter------------------------------- -->
+    <div class="filters">
+        <div class="container_info">
+            <!-- //-------avant click----------------- -->
+            <div class="input_container">
+                <div class="containt_nameElement">
+                    <p>Ingredient</p>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <!-- //-------apres click----------------- -->
+            <div class="containt_element_Serach">
+                <div class="input_chevron">
+                    <input type="search" placeholder="Rechercher un ingredient" class="InputShe">
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
+                <div class="containt_info">
+                    <!-- <p class="ingredientText">baba</p> -->
+                </div>
+            </div>
+        </div>
+        <!-- //--------------------filtert appareil------------------------ -->
+        <div class="container_info">
+            <!-- //-------avant click----------------- -->
+            <div class="input_container">
+                <div class="containt_nameElement">
+                    <p>Appareil</p>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <!-- //-------apres click----------------- -->
+            <div class="containt_element_Serach">
+                <div class="input_chevron">
+                    <input type="search" placeholder="Rechercher un ingredient" class="InputShe">
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
+                <div class="containt_info">
+
+                </div>
+            </div>
+        </div>
+        <!-- //------------------------ustensiles--------------------------- -->
+        <div class="container_info">
+            <!-- //-------avant click----------------- -->
+            <div class="input_container">
+                <div class="containt_nameElement">
+                    <p>Ustensiles</p>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <!-- //-------apres click----------------- -->
+            <div class="containt_element_Serach">
+                <div class="input_chevron">
+                    <input type="search" placeholder="Rechercher un ingredient" class="InputShe">
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
+                <div class="containt_info">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+
+    </section>
+    <nav>
+
+    </nav>
 </body>
+<script src="js/main.js"></script>
+<script src="search.js"></script>
+<!-- <script src="search2.js"></script> -->
+
 </html>
