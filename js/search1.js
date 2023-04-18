@@ -24,28 +24,7 @@ function Filter(valueInput, containerAll) {
     location.reload();
   }
 }
-//------------------barre de recherche inferieur--------------------------
-InputShe.forEach((InputShee) => {
-  InputShee.addEventListener("input", (e) => {
-    const valueInput = e.target.value;
-    const para = document.querySelectorAll(".para");
-    recherche(valueInput, para);
-  });
-});
 
-function recherche(valueInput, para) {
-  if (valueInput.length > 2) {
-    for (let i = 0; i < para.length; i++) {
-      if (para[i].textContent.toLowerCase().includes(valueInput)) {
-        para[i].style.display = "block";
-      } else {
-        para[i].style.display = "none";
-      }
-    }
-  } else if (valueInput.length == 0) {
-    location.reload();
-  }
-}
 
 
 
