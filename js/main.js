@@ -33,6 +33,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
   if (res.ok) {
     res.json().then((data) => {
       let recipes = data.recipes;
+
       let AllIngredient = [];
 
       for (i = 0; i < recipes.length; i++) {
@@ -58,9 +59,15 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
           afficheClickIng.innerHTML += `
     <div class="containeAffiche2" style="background-color: #3282f7">
     <p class="text">${element}</p>
-     <div><i class="fa fa-times" aria-hidden="true"></i></div>
+     <div><i class="fa fa-times close" aria-hidden="true"></i></div>
     </div>
     `;
+
+          //----------fermeture du fa fa-times-------------------------
+          // const fa_close = document.querySelectorAll('.close')
+          // for(let i=0;i<fa_close.length;i++){
+          //   console.log(fa_close[i]);
+          // }
           //-------------------recherche- avec le click---------------------
           const containerAll = document.querySelectorAll(".containerAll");
           Filter(element, containerAll);
@@ -182,7 +189,6 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
   if (res.ok) {
     res.json().then((data) => {
       let recipes = data.recipes;
-
 
       for (i = 0; i < recipes.length; i++) {
         newFuntion(recipes);
