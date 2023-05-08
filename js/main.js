@@ -52,6 +52,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
            `;
         }
       );
+      //-----------------affichage des blocs de recherche--------------------
       const para1 = document.querySelectorAll(".para1");
       para1.forEach((para1) => {
         para1.addEventListener("click", (e) => {
@@ -59,15 +60,10 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
           afficheClickIng.innerHTML += `
     <div class="containeAffiche2" style="background-color: #3282f7">
     <p class="text">${element}</p>
-     <div><i class="fa fa-times close" aria-hidden="true"></i></div>
+    <i class="fa fa-times close" aria-hidden="true"></i>
     </div>
     `;
 
-          //----------fermeture du fa fa-times-------------------------
-          // const fa_close = document.querySelectorAll('.close')
-          // for(let i=0;i<fa_close.length;i++){
-          //   console.log(fa_close[i]);
-          // }
           //-------------------recherche- avec le click---------------------
           const containerAll = document.querySelectorAll(".containerAll");
           Filter(element, containerAll);
@@ -81,6 +77,22 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               }
             }
           }
+
+          // -----------------Décochez tous les boutons de catégorie----------
+          const closes = document.querySelectorAll(".fa-times");
+            closes.forEach((closes) => {
+              closes.addEventListener("click", (e) => {
+                let siblingElement = e.target.parentElement;
+                siblingElement.remove();
+                const siblingTextForDeletRechear = siblingElement.childNodes[0].nextSibling.innerText;
+                // for (let i = 0; i < containerAll.length; i++) {
+                //   if (containerAll[i].textContent.toLowerCase().includes(siblingTextForDeletRechear)) {
+                //     containerAll[i].style.display = "none";
+                //   } 
+                // }
+                
+              });
+            });
         });
       });
     });
@@ -112,7 +124,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
           afficheClickIng.innerHTML += `
     <div class="containeAffiche2" style="background-color: #68d9a4">
     <p class="text">${element}</p>
-     <div><i class="fa fa-times" aria-hidden="true"></i></div>
+     <i class="fa fa-times" aria-hidden="true"></i>
     </div>
     `;
           //-------------------recherche- avec le click---------------------
@@ -128,6 +140,14 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               }
             }
           }
+          // -----------------Décochez tous les boutons de catégorie----------
+          const closes = document.querySelectorAll(".fa-times");
+            closes.forEach((closes) => {
+              closes.addEventListener("click", (e) => {
+                let siblingElement = e.target.parentElement;
+                siblingElement.remove();
+              });
+            });
         });
       });
     });
@@ -161,7 +181,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
           afficheClickIng.innerHTML += `
     <div class="containeAffiche2" style="background-color:#ed6454">
     <p class="text">${element}</p>
-     <div><i class="fa fa-times" aria-hidden="true"></i></div>
+     <i class="fa fa-times" aria-hidden="true"></i>
     </div>
     `;
 
@@ -178,6 +198,14 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               }
             }
           }
+          // -----------------Décochez tous les boutons de catégorie----------
+          const closes = document.querySelectorAll(".fa-times");
+            closes.forEach((closes) => {
+              closes.addEventListener("click", (e) => {
+                let siblingElement = e.target.parentElement;
+                siblingElement.remove();
+              });
+            });
         });
       });
     });
