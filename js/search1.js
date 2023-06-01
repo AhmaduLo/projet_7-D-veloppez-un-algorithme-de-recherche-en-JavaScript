@@ -47,31 +47,3 @@ function recherche(valueInput, para) {
     location.reload();
   }
 }
-
-// // Récupérer le champ de recherche et le conteneur des recettes
-// const searchInput = document.getElementById("searchInput");
-// const recipeContainer = document.getElementById("recipeContainer");
-// // Fonction de recherche pour filtrer les recettes en fonction du texte saisi
-// function searchRecipes(query) {
-//   const filteredRecipes = allRecipes.filter(recipe => {
-//     const name = recipe.name.toLowerCase();
-//     return name.includes(query.toLowerCase());
-//   });
-//   const html = filteredRecipes.map(recipe => `<div>${recipe.name}</div>`).join("");
-//   recipeContainer.innerHTML = html;
-// }
-// / Écouter les événements de saisie et de suppression dans le champ de recherche
-// searchInput.addEventListener("input", event => {
-//   const query = event.target.value;
-//   if (query.length >= 3) {
-//     searchRecipes(query);
-//   } else {
-//     recipeContainer.innerHTML = "";
-//   }
-// });
-// searchInput.addEventListener("keydown", event => {
-//   if (event.key === "Backspace" && searchInput.value.length >= 3) {
-//     const query = searchInput.value.slice(0, -1);
-//     searchRecipes(query);
-//   }
-// });
