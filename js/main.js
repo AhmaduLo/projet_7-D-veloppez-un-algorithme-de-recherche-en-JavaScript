@@ -47,7 +47,9 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
             ArrayRecipes.push({
               id: recipes[i].id,
               ingredient: ArrayIngredients,
+             
             });
+            
           }
         }
       }
@@ -157,8 +159,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                 if (AllIdtoDisplays == "") {
                   section.classList.remove("displayNone");
                 }
-
-                console.log(AllIdtoDisplays);
+               
               });
 
               fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
