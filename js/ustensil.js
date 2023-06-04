@@ -75,7 +75,6 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                 }
                 //---les id que je doit afficher---
                 AllIdtoDisplays.push(thisId);
-                console.log(AllIdtoDisplays);
               }
             });
           });
@@ -107,7 +106,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   });
                   for (i = 0; i < recipes.length; i++) {
                     if (AllIdtoDisplaysNotDupliquate.includes(recipes[i].id)) {
-                      section2.innerHTML += `
+                      nav3.innerHTML += `
                     <div class="containerAll">
                         <div class="imgNone"></div>
                         <div class="lesInfos">
@@ -157,10 +156,12 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   if (siblingElementText == Usten) {
                     IdYToDelete.push(thisId);
                   }
+                  
                 });
               });
               IdYToDelete.forEach((IdYToDelete) => {
                 AllIdtoDisplays.pop(IdYToDelete);
+                console.log(AllIdtoDisplays);
                 if (AllIdtoDisplays == "") {
                   section.classList.remove("displayNone");
                 }
@@ -191,7 +192,8 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
 
                       for (i = 0; i < recipes.length; i++) {
                         if (AllIdtoDisplays.includes(recipes[i].id)) {
-                          section2.innerHTML += `
+                          nav3.innerHTML += `
+                          
                         <div class="containerAll">
                             <div class="imgNone"></div>
                             <div class="lesInfos">
@@ -226,6 +228,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
             });
           });
         });
+        
       });
     });
   }

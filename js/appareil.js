@@ -1,3 +1,4 @@
+
 //------------les 3 bares de recherche-------------------
 
 for (let i = 0; i < fa_down.length; i++) {
@@ -102,7 +103,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   });
                   for (i = 0; i < recipes.length; i++) {
                     if (AllIdtoDisplaysNotDupliquate.includes(recipes[i].id)) {
-                      section2.innerHTML += `
+                      nav2.innerHTML += `
                     <div class="containerAll">
                         <div class="imgNone"></div>
                         <div class="lesInfos">
@@ -187,7 +188,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
 
                       for (i = 0; i < recipes.length; i++) {
                         if (AllIdtoDisplays.includes(recipes[i].id)) {
-                          section2.innerHTML += `
+                          nav2.innerHTML += `
                         <div class="containerAll">
                             <div class="imgNone"></div>
                             <div class="lesInfos">

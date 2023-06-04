@@ -11,6 +11,9 @@ const section = document.querySelector("section");
 const containeAffiche = document.querySelector(".containeAffiche");
 const afficheClickIng = document.querySelector(".afficheClickIng");
 const section2 = document.querySelector("nav");
+const nav2 = document.querySelector(".nav2")
+const nav3 = document.querySelector(".nav3")
+// let AllIdtoDisplays = [];
 //------------les 3 bares de recherche-------------------
 
 for (let i = 0; i < fa_down.length; i++) {
@@ -171,6 +174,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   }
                 });
               });
+              // console.log(AllIdtoDisplaysUsten);
               IdYToDelete.forEach((IdYToDelete) => {
                 AllIdtoDisplays.pop(IdYToDelete);
                 if (AllIdtoDisplays == "") {
