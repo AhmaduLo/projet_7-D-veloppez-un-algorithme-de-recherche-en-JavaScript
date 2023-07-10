@@ -13,7 +13,8 @@ const afficheClickIng = document.querySelector(".afficheClickIng");
 const section2 = document.querySelector("nav");
 const nav2 = document.querySelector(".nav2")
 const nav3 = document.querySelector(".nav3")
-// let AllIdtoDisplays = [];
+ let AllIdTable = [];
+
 //------------les 3 bares de recherche-------------------
 
 for (let i = 0; i < fa_down.length; i++) {
@@ -91,6 +92,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                 }
                 //---les id que je doit afficher---
                 AllIdtoDisplays.push(thisId);
+               
               }
             });
           });
@@ -174,9 +176,18 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   }
                 });
               });
-              // console.log(AllIdtoDisplaysUsten);
+              
               IdYToDelete.forEach((IdYToDelete) => {
                 AllIdtoDisplays.pop(IdYToDelete);
+                AllIdTable.push(AllIdtoDisplays);
+                //console.log(AllIdTable);
+                // AllIdTable.forEach((AllIdTableFor)=>{
+                  //console.log(AllIdTableFor);
+                  // if(AllIdTableFor == ""){
+                  //   //console.log('yes');
+                  //   section.classList.remove("displayNone");
+                  // }
+                // })
                 if (AllIdtoDisplays == "") {
                   section.classList.remove("displayNone");
                 }

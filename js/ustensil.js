@@ -49,7 +49,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
       //---------------------clique du para------------------------------
       const para3 = document.querySelectorAll(".para3");
       let AllId = [{ element: "X", ids: [] }];
-      let AllIdtoDisplays = [];
+      let AllIdtoDisplaysUsten = [];
       para3.forEach((para3) => {
         para3.addEventListener("click", (e) => {
           section.classList.add("displayNone");
@@ -74,13 +74,13 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   AllId.push({ element: element, ids: AllTheIdFor });
                 }
                 //---les id que je doit afficher---
-                AllIdtoDisplays.push(thisId);
+                AllIdtoDisplaysUsten.push(thisId);
               }
             });
           });
           //------------delete dupplication des id-------
-          let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplays)];
-          section2.innerHTML = "";
+          let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplaysUsten)];
+          nav3.innerHTML = "";
           //----afficher les resultats obtenu
           fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
             if (res.ok) {
@@ -146,23 +146,29 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               let siblingElementText =
                 e.target.parentElement.firstChild.nextSibling.textContent;
               siblingElement.remove();
-              section2.innerHTML = "";
+              nav3.innerHTML = "";
               //--les id qu'on doit delete--
-              let IdYToDelete = [];
+              let IdYToDeleteUss = [];
               const result = ArrayUstensiles.filter((item) => {
                 let thisId = item.id;
                 let Ustensil = [...new Set(item.ustensiles)];
                 Ustensil.forEach((Usten) => {
                   if (siblingElementText == Usten) {
-                    IdYToDelete.push(thisId);
+                    IdYToDeleteUss.push(thisId);
                   }
-                  
                 });
               });
-              IdYToDelete.forEach((IdYToDelete) => {
-                AllIdtoDisplays.pop(IdYToDelete);
-                console.log(AllIdtoDisplays);
-                if (AllIdtoDisplays == "") {
+              IdYToDeleteUss.forEach((IdYToDeleteUss) => {
+                AllIdtoDisplaysUsten.pop(IdYToDeleteUss);
+                //console.log(AllIdtoDisplaysUsten);
+                //AllIdTable.push(AllIdtoDisplays);
+                // AllIdTable.forEach((AllIdTableFor)=>{
+                // if(AllIdTableFor == ""){
+                //   // console.log('yes');
+                //   section.classList.remove("displayNone");
+                // }
+                // })
+                if (AllIdtoDisplaysUsten == "") {
                   section.classList.remove("displayNone");
                 }
               });
@@ -191,9 +197,8 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                       });
 
                       for (i = 0; i < recipes.length; i++) {
-                        if (AllIdtoDisplays.includes(recipes[i].id)) {
-                          nav3.innerHTML += `
-                          
+                        if (AllIdtoDisplaysUsten.includes(recipes[i].id)) {
+                          nav3.innerHTML += `  
                         <div class="containerAll">
                             <div class="imgNone"></div>
                             <div class="lesInfos">
@@ -228,7 +233,6 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
             });
           });
         });
-        
       });
     });
   }

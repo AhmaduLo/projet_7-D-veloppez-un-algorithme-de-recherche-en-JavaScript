@@ -45,8 +45,8 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               `;
       });
       const para2 = document.querySelectorAll(".para2");
-      let AllIdtoDisplays = [];
-      let AllId = [{ element: "X", ids: [] }];
+      let AllIdtoDisplaysApp = [];
+      let AllId2 = [{ element: "X", ids: [] }];
       para2.forEach((para2) => {
         para2.addEventListener("click", (e) => {
           section.classList.add("displayNone");
@@ -67,17 +67,17 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
             Appareil.forEach((App) => {
               if (element == App) {
                 AllTheIdFor.push(thisId);
-                if (AllId[AllId.length - 1].element != element) {
-                  AllId.push({ element: element, ids: AllTheIdFor });
+                if (AllId2[AllId2.length - 1].element != element) {
+                  AllId2.push({ element: element, ids: AllTheIdFor });
                 }
                 //---les id que je doit afficher---
-                AllIdtoDisplays.push(thisId);
+                AllIdtoDisplaysApp.push(thisId);
               }
             });
           });
           //------------delete dupplication des id-------
-          let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplays)];
-          section2.innerHTML = "";
+          let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplaysApp)];
+          nav2.innerHTML = "";
           //-----------------afficher les resultats obtenu----------------------
           fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
             if (res.ok) {
@@ -143,21 +143,30 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               let siblingElementText =
                 e.target.parentElement.firstChild.nextSibling.textContent;
               siblingElement.remove();
-              section2.innerHTML = "";
+              nav2.innerHTML = "";
               //--les id qu'on doit delete--
-              let IdYToDelete = [];
+              let IdYToDeleteApp = [];
               const result = ArrayAppareil.filter((item) => {
                 let thisId = item.id;
                 let Appareil = [...new Set(item.appareil)];
                 Appareil.forEach((App) => {
                   if (siblingElementText == App) {
-                    IdYToDelete.push(thisId);
+                    IdYToDeleteApp.push(thisId);
                   }
                 });
               });
-              IdYToDelete.forEach((IdYToDelete) => {
-                AllIdtoDisplays.pop(IdYToDelete);
-                if (AllIdtoDisplays == "") {
+              IdYToDeleteApp.forEach((IdYToDeleteApp) => {
+                AllIdtoDisplaysApp.pop(IdYToDeleteApp);
+                //AllIdTable.push(AllIdtoDisplays);
+                //console.log(AllIdTable);
+                // AllIdTable.forEach((AllIdTableFor)=>{
+                  //console.log(AllIdTableFor);
+                  // if(AllIdTableFor == ""){
+                  //   //console.log('yes');
+                  //   section.classList.remove("displayNone");
+                  // }
+                // })
+                if (AllIdtoDisplaysApp == "") {
                   section.classList.remove("displayNone");
                 }
               });
@@ -187,7 +196,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                       });
 
                       for (i = 0; i < recipes.length; i++) {
-                        if (AllIdtoDisplays.includes(recipes[i].id)) {
+                        if (AllIdtoDisplaysApp.includes(recipes[i].id)) {
                           nav2.innerHTML += `
                         <div class="containerAll">
                             <div class="imgNone"></div>
