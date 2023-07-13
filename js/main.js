@@ -11,9 +11,9 @@ const section = document.querySelector("section");
 const containeAffiche = document.querySelector(".containeAffiche");
 const afficheClickIng = document.querySelector(".afficheClickIng");
 const section2 = document.querySelector("nav");
-const nav2 = document.querySelector(".nav2")
-const nav3 = document.querySelector(".nav3")
- let AllIdTable = [];
+const nav2 = document.querySelector(".nav2");
+const nav3 = document.querySelector(".nav3");
+let AllIdtoDisplays = [];
 
 //------------les 3 bares de recherche-------------------
 
@@ -32,14 +32,15 @@ for (let i = 0; i < fa_up.length; i++) {
     containt_element_Serach[i].classList.remove("containt_element_SerachAfter");
   });
 }
+
 //-------------------------fecth ingredients----------------------------------
-//---------------------------------------------------------------------------
 fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
   if (res.ok) {
     res.json().then((data) => {
       let recipes = data.recipes;
       let AllIngredient = [];
       let ArrayRecipes = [{ id: "X" }];
+
       for (i = 0; i < recipes.length; i++) {
         let ArrayIngredients = [];
         let ingredients = recipes[i].ingredients;
@@ -55,31 +56,29 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
           }
         }
       }
-      //-----------------delete des elements dupliquer-et affiche ingredient-------------------
+      //-----------------suppresion des elements dupliquer--------------------
       let AllIngredientNondupliquate = [...new Set(AllIngredient)];
       AllIngredientNondupliquate.forEach(
         (AllIngredientNondupliquateForEach) => {
           containt_info[0].innerHTML += `
-          <p class="para1" > ${AllIngredientNondupliquateForEach}</p>
-           `;
+           <p class="para1" > ${AllIngredientNondupliquateForEach}</p>
+            `;
         }
       );
-      //---------------------clique du para------------------------------
+      //-----------------affichage des blocs de recherche--------------------
       const para1 = document.querySelectorAll(".para1");
       let AllId = [{ element: "X", ids: [] }];
-      let AllIdtoDisplays = [];
       para1.forEach((para1) => {
         para1.addEventListener("click", (e) => {
           section.classList.add("displayNone");
           const element = e.target.lastChild.textContent;
           afficheClickIng.innerHTML += `
-    <div class="containeAffiche2" style="background-color: #3282f7"> 
+    <div class="containeAffiche2" style="background-color: #3282f7">
     <p class="text">${element}</p>
-    <i class="fa fa-times" aria-hidden="true"></i>
+    <i class="fa fa-times close" aria-hidden="true"></i>
     </div>
     `;
           //-------------------recherche- avec le click---------------------
-          //--les id des elemntsque j'ai cliquer--
           let AllTheIdFor = [];
           const result = ArrayRecipes.filter((item) => {
             let thisId = item.id;
@@ -92,78 +91,74 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                 }
                 //---les id que je doit afficher---
                 AllIdtoDisplays.push(thisId);
-               
               }
             });
           });
           //------------delete dupplication des id-------
           let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplays)];
           section2.innerHTML = "";
-          //----afficher les resultats obtenu
-          fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
-            if (res.ok) {
-              res.json().then((data) => {
-                let recipes = data.recipes;
-                for (i = 0; i < recipes.length; i++) {
-                  newFuntion(recipes);
-                }
+          //-------afficher les resultats obtenu----------
+          for (i = 0; i < recipes.length; i++) {
+            newFuntion(recipes);
+          }
 
-                function newFuntion(recipes) {
-                  let ingredient = recipes[i].ingredients;
-                  let textIngre = "";
+          function newFuntion(recipes) {
+            let ingredient = recipes[i].ingredients;
+            let textIngre = "";
 
-                  ingredient.forEach((ingred) => {
-                    textIngre = textIngre + " " + ingred.ingredient + "    :";
+            ingredient.forEach((ingred) => {
+              textIngre = textIngre + " " + ingred.ingredient + "    :";
 
-                    if (ingred.quantity != undefined) {
-                      textIngre = textIngre + "" + ingred.quantity;
-                    }
-                    if (ingred.unit != undefined) {
-                      textIngre = textIngre + " " + ingred.unit + "<br/>";
-                    }
-                  });
-                  for (i = 0; i < recipes.length; i++) {
-                    if (AllIdtoDisplaysNotDupliquate.includes(recipes[i].id)) {
-                      section2.innerHTML += `
-                    <div class="containerAll">
-                        <div class="imgNone"></div>
-                        <div class="lesInfos">
-                            <div class="tittle_time">
-                                <div class="tittle">
-                                    <h3>${recipes[i].name}</h3>
-                                </div>
-                                <div class="time">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    <p>${recipes[i].time} min</p>
-                                </div>
-              
-                            </div>
-              
-                            <div class="ingredient_demo">
-                                <div class="ingredient"> 
-                                  <p> ${textIngre} </p>  
-                                </div>
-                                <div class="demo">
-                                ${recipes[i].description}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                    }
-                  }
-                }
-              });
+              if (ingred.quantity != undefined) {
+                textIngre = textIngre + "" + ingred.quantity;
+              }
+              if (ingred.unit != undefined) {
+                textIngre = textIngre + " " + ingred.unit + "<br/>";
+              }
+            });
+            for (i = 0; i < recipes.length; i++) {
+              if (AllIdtoDisplaysNotDupliquate.includes(recipes[i].id)) {
+                section2.innerHTML += `
+              <div class="containerAll2">
+                  <div class="imgNone"></div>
+                  <div class="lesInfos">
+                      <div class="tittle_time">
+                          <div class="tittle">
+                              <h3>${recipes[i].name}</h3>
+                          </div>
+                          <div class="time">
+                              <i class="fa fa-clock-o" aria-hidden="true"></i>
+                              <p>${recipes[i].time} min</p>
+                          </div>
+        
+                      </div>
+        
+                      <div class="ingredient_demo">
+                          <div class="ingredient"> 
+                            <p> ${textIngre} </p>  
+                          </div>
+                          <div class="demo">
+                          ${recipes[i].description}
+                          </div>
+                      </div>
+                      <div class="app_usten">
+            ${recipes[i].appliance}
+            ${recipes[i].ustensils}
+            </div>
+                  </div>
+              </div>
+              `;
+              }
             }
-          });
-          // -----------------Décochez et delete les recheches------------
+          }
+          // -----------------Décochez tous les boutons de catégorie----------
           const closes = document.querySelectorAll(".fa-times");
           closes.forEach((closes) => {
             closes.addEventListener("click", (e) => {
               let siblingElement = e.target.parentElement;
+              siblingElement.remove();
               let siblingElementText =
                 e.target.parentElement.firstChild.nextSibling.textContent;
-              siblingElement.remove();
               section2.innerHTML = "";
               //--les id qu'on doit delete--
               let IdYToDelete = [];
@@ -176,85 +171,72 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   }
                 });
               });
-              
-              IdYToDelete.forEach((IdYToDelete) => {
-                AllIdtoDisplays.pop(IdYToDelete);
-                AllIdTable.push(AllIdtoDisplays);
-                //console.log(AllIdTable);
-                // AllIdTable.forEach((AllIdTableFor)=>{
-                  //console.log(AllIdTableFor);
-                  // if(AllIdTableFor == ""){
-                  //   //console.log('yes');
-                  //   section.classList.remove("displayNone");
-                  // }
-                // })
+              IdYToDelete.forEach((IdYToDeleteUss) => {
+                AllIdtoDisplays.pop(IdYToDeleteUss);
                 if (AllIdtoDisplays == "") {
                   section.classList.remove("displayNone");
                 }
               });
+              //----------affiche result after delete--------
+              for (i = 0; i < recipes.length; i++) {
+                newFuntion(recipes);
+              }
 
-              fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
-                if (res.ok) {
-                  res.json().then((data) => {
-                    let recipes = data.recipes;
-                    for (i = 0; i < recipes.length; i++) {
-                      newFuntion(recipes);
-                    }
+              function newFuntion(recipes) {
+                let ingredient = recipes[i].ingredients;
+                let textIngre = "";
 
-                    function newFuntion(recipes) {
-                      let ingredient = recipes[i].ingredients;
-                      let textIngre = "";
+                ingredient.forEach((ingred) => {
+                  textIngre = textIngre + " " + ingred.ingredient + "    :";
 
-                      ingredient.forEach((ingred) => {
-                        textIngre =
-                          textIngre + " " + ingred.ingredient + "    :";
-
-                        if (ingred.quantity != undefined) {
-                          textIngre = textIngre + "" + ingred.quantity;
-                        }
-                        if (ingred.unit != undefined) {
-                          textIngre = textIngre + " " + ingred.unit + "<br/>";
-                        }
-                      });
-
-                      for (i = 0; i < recipes.length; i++) {
-                        if (AllIdtoDisplays.includes(recipes[i].id)) {
-                          section2.innerHTML += `
-                        <div class="containerAll">
-                            <div class="imgNone"></div>
-                            <div class="lesInfos">
-                                <div class="tittle_time">
-                                    <div class="tittle">
-                                        <h3>${recipes[i].name}</h3>
-                                    </div>
-                                    <div class="time">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        <p>${recipes[i].time} min</p>
-                                    </div>
-
-                                </div>
-
-                                <div class="ingredient_demo">
-                                    <div class="ingredient">
-                                      <p>${textIngre} </p>
-                                    </div>
-                                    <div class="demo">
-                                    ${recipes[i].description}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                        }
-                      }
-                    }
-                  });
+                  if (ingred.quantity != undefined) {
+                    textIngre = textIngre + "" + ingred.quantity;
+                  }
+                  if (ingred.unit != undefined) {
+                    textIngre = textIngre + " " + ingred.unit + "<br/>";
+                  }
+                });
+                for (i = 0; i < recipes.length; i++) {
+                  if (AllIdtoDisplays.includes(recipes[i].id)) {
+                    section2.innerHTML += `
+                  <div class="containerAll2">
+                      <div class="imgNone"></div>
+                      <div class="lesInfos">
+                          <div class="tittle_time">
+                              <div class="tittle">
+                                  <h3>${recipes[i].name}</h3>
+                              </div>
+                              <div class="time">
+                                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                  <p>${recipes[i].time} min</p>
+                              </div>
+            
+                          </div>
+            
+                          <div class="ingredient_demo">
+                              <div class="ingredient"> 
+                                <p> ${textIngre} </p>  
+                              </div>
+                              <div class="demo">
+                              ${recipes[i].description}
+                              </div>
+                          </div>
+                          <div class="app_usten">
+                ${recipes[i].appliance}
+                ${recipes[i].ustensils}
+                </div>
+                      </div>
+                  </div>
+                  `;
+                  }
                 }
-              });
+              }
             });
           });
         });
       });
+
+      //---ending fetch--
     });
   }
 });

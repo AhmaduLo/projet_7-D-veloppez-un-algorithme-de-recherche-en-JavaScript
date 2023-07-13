@@ -237,19 +237,70 @@ nav {
   overflow: auto;
 }
 
+.containerAll2 {
+  width: 350px;
+  height: auto;
+  margin-left: 30px;
+  margin-bottom: 55px;
+  overflow: hidden;
+  position: relative;
+}
+.containerAll2 .imgNone {
+  height: 170px;
+  background-color: #c7bebe;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.containerAll2 .lesInfos {
+  background-color: #e7e7e7;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.containerAll2 .lesInfos .tittle_time {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.containerAll2 .lesInfos .tittle_time .time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  width: 100px;
+}
+.containerAll2 .lesInfos .tittle_time .tittle {
+  width: 200px;
+}
+.containerAll2 .lesInfos .ingredient_demo {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.containerAll2 .lesInfos .ingredient_demo .ingredient {
+  font-size: 13px;
+  width: 550px;
+}
+.containerAll2 .lesInfos .ingredient_demo .demo {
+  font-size: 13px;
+  width: 550px;
+  height: 150px;
+  overflow: auto;
+}
 @media only screen and (max-width: 600px) {
-  .container_info.container_infoAfter {
+  .containerAll2 .container_info.container_infoAfter {
     width: 100px;
   }
 }
 @media only screen and (max-width: 900px) {
-  section {
+  .containerAll2 section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
-  nav {
+  .containerAll2 nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

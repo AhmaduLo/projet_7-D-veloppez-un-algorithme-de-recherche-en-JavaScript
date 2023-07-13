@@ -74,17 +74,14 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   AllId.push({ element: element, ids: AllTheIdFor });
                 }
                 //---les id que je doit afficher---
-                AllIdtoDisplaysUsten.push(thisId);
+                AllIdtoDisplays.push(thisId);
               }
             });
           });
           //------------delete dupplication des id-------
-          let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplaysUsten)];
-          nav3.innerHTML = "";
+          let AllIdtoDisplaysNotDupliquate = [...new Set(AllIdtoDisplays)];
+          section2.innerHTML = "";
           //----afficher les resultats obtenu
-          fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
-            if (res.ok) {
-              res.json().then((data) => {
                 let recipes = data.recipes;
                 for (i = 0; i < recipes.length; i++) {
                   newFuntion(recipes);
@@ -106,7 +103,7 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                   });
                   for (i = 0; i < recipes.length; i++) {
                     if (AllIdtoDisplaysNotDupliquate.includes(recipes[i].id)) {
-                      nav3.innerHTML += `
+                      section2.innerHTML += `
                     <div class="containerAll">
                         <div class="imgNone"></div>
                         <div class="lesInfos">
@@ -129,15 +126,17 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
                                 ${recipes[i].description}
                                 </div>
                             </div>
+                            <div class="app_usten">
+                  ${recipes[i].appliance}
+                  ${recipes[i].ustensils}
+                  </div>
                         </div>
                     </div>
                     `;
                     }
                   }
                 }
-              });
-            }
-          });
+             
           // -----------------Décochez et delete les recheches------------
           const closes = document.querySelectorAll(".fa-times");
           closes.forEach((closes) => {
@@ -146,90 +145,78 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
               let siblingElementText =
                 e.target.parentElement.firstChild.nextSibling.textContent;
               siblingElement.remove();
-              nav3.innerHTML = "";
+              section2.innerHTML = "";
               //--les id qu'on doit delete--
-              let IdYToDeleteUss = [];
+              let IdYToDelete = [];
               const result = ArrayUstensiles.filter((item) => {
                 let thisId = item.id;
                 let Ustensil = [...new Set(item.ustensiles)];
                 Ustensil.forEach((Usten) => {
                   if (siblingElementText == Usten) {
-                    IdYToDeleteUss.push(thisId);
+                    IdYToDelete.push(thisId);
                   }
                 });
               });
-              IdYToDeleteUss.forEach((IdYToDeleteUss) => {
-                AllIdtoDisplaysUsten.pop(IdYToDeleteUss);
-                //console.log(AllIdtoDisplaysUsten);
-                //AllIdTable.push(AllIdtoDisplays);
-                // AllIdTable.forEach((AllIdTableFor)=>{
-                // if(AllIdTableFor == ""){
-                //   // console.log('yes');
-                //   section.classList.remove("displayNone");
-                // }
-                // })
-                if (AllIdtoDisplaysUsten == "") {
+              IdYToDelete.forEach((IdYToDeleteUss) => {
+                AllIdtoDisplays.pop(IdYToDeleteUss);
+                if (AllIdtoDisplays == "") {
                   section.classList.remove("displayNone");
                 }
               });
-              fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
-                if (res.ok) {
-                  res.json().then((data) => {
-                    let recipes = data.recipes;
-                    for (i = 0; i < recipes.length; i++) {
-                      newFuntion(recipes);
-                    }
+              //----------affiche result after delete--------
+              for (i = 0; i < recipes.length; i++) {
+                newFuntion(recipes);
+              }
 
-                    function newFuntion(recipes) {
-                      let ingredient = recipes[i].ingredients;
-                      let textIngre = "";
+              function newFuntion(recipes) {
+                let ingredient = recipes[i].ingredients;
+                let textIngre = "";
 
-                      ingredient.forEach((ingred) => {
-                        textIngre =
-                          textIngre + " " + ingred.ingredient + "    :";
+                ingredient.forEach((ingred) => {
+                  textIngre = textIngre + " " + ingred.ingredient + "    :";
 
-                        if (ingred.quantity != undefined) {
-                          textIngre = textIngre + "" + ingred.quantity;
-                        }
-                        if (ingred.unit != undefined) {
-                          textIngre = textIngre + " " + ingred.unit + "<br/>";
-                        }
-                      });
-
-                      for (i = 0; i < recipes.length; i++) {
-                        if (AllIdtoDisplaysUsten.includes(recipes[i].id)) {
-                          nav3.innerHTML += `  
-                        <div class="containerAll">
-                            <div class="imgNone"></div>
-                            <div class="lesInfos">
-                                <div class="tittle_time">
-                                    <div class="tittle">
-                                        <h3>${recipes[i].name}</h3>
-                                    </div>
-                                    <div class="time">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        <p>${recipes[i].time} min</p>
-                                    </div>
-
-                                </div>
-
-                                <div class="ingredient_demo">
-                                    <div class="ingredient">
-                                      <p>${textIngre} </p>
-                                    </div>
-                                    <div class="demo">
-                                    ${recipes[i].description}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                        }
-                      }
-                    }
-                  });
+                  if (ingred.quantity != undefined) {
+                    textIngre = textIngre + "" + ingred.quantity;
+                  }
+                  if (ingred.unit != undefined) {
+                    textIngre = textIngre + " " + ingred.unit + "<br/>";
+                  }
+                });
+                for (i = 0; i < recipes.length; i++) {
+                  if (AllIdtoDisplays.includes(recipes[i].id)) {
+                    section2.innerHTML += `
+                  <div class="containerAll2">
+                      <div class="imgNone"></div>
+                      <div class="lesInfos">
+                          <div class="tittle_time">
+                              <div class="tittle">
+                                  <h3>${recipes[i].name}</h3>
+                              </div>
+                              <div class="time">
+                                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                  <p>${recipes[i].time} min</p>
+                              </div>
+            
+                          </div>
+            
+                          <div class="ingredient_demo">
+                              <div class="ingredient"> 
+                                <p> ${textIngre} </p>  
+                              </div>
+                              <div class="demo">
+                              ${recipes[i].description}
+                              </div>
+                          </div>
+                          <div class="app_usten">
+                ${recipes[i].appliance}
+                ${recipes[i].ustensils}
+                </div>
+                      </div>
+                  </div>
+                  `;
+                  }
                 }
-              });
+              }
             });
           });
         });
@@ -237,3 +224,4 @@ fetch("http://127.0.0.1:5500/data/recipes.json").then((res) => {
     });
   }
 });
+console.log(AllIdtoDisplays);
